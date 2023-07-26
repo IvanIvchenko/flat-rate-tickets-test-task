@@ -44,11 +44,16 @@ app.use((req, res, next) => {
 app.use(errorHandler);
 
 const APP_PORT = process.env.PORT || 4000;
+const APP_HOST = process.env.HOST || 'localhost';
 
 const server = http.createServer(app);
 
 function setupServer(): void {
-  server.listen(APP_PORT);
+  server.listen(APP_PORT, () =>
+    console.log(`Server started at ${APP_HOST}:${APP_PORT}`),
+  );
 }
 // Server setup
 setupServer();
+
+export { app };
