@@ -1,8 +1,21 @@
-import { Price, Seat, SeatSmall, Ticket, Zone } from '../utils/interfaces';
+import {
+  Price,
+  ResponseError,
+  Seat,
+  SeatSmall,
+  Ticket,
+  Zone,
+} from '../utils/interfaces';
 import { ticketsApi } from '../utils/ticketsApi';
 
 export class TicketsService {
   async getTickets(id: string): Promise<Ticket[]> {
+    const event = await ticketsApi.getEvent(id);
+    if (event.length === 0) {
+      const err: ResponseError = new Error('No event with such ID was found');
+      err.statusCode = 400;
+      throw err;
+    }
     const [seats, zones, prices] = await Promise.all([
       await ticketsApi.getSeats(id),
       await ticketsApi.getZones(id),

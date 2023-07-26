@@ -18,11 +18,10 @@ app.use(
     methods: 'GET',
     credentials: true,
     allowedHeaders:
-      'Origin, Authorization, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin',
+      'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin',
   }),
 );
 
-// Attaches a value of startTimer which will be the indicator for how long it took for the request to be handled.
 app.use((req, res, next) => {
   console.log('----------------------');
   console.log(`New Request, Target: ${req.method} - ${req.baseUrl}`);

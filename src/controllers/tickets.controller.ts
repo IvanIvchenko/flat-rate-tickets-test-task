@@ -24,7 +24,6 @@ export class TicketsController {
         console.error('Error while retreaving tickets:', err.message);
         next(err);
       }
-      console.error('Unknown error occured.');
       next(err);
     }
   }
