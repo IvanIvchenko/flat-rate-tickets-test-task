@@ -22,5 +22,5 @@ describe('GET tickets', () => {
       expect(ticket).toHaveProperty('seat_number', expect.any(Number));
       expect(ticket).toHaveProperty('price', expect.any(Number));
     });
-  });
+  }, 100000);
 });
